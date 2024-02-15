@@ -83,9 +83,24 @@ if __name__ == '__main__':
     #st.write(dash.highest_place_possible(dash.entries.groupby('Entrant').get_group('Christian')))
     st.title("Oscar Pool Tracker")
     st.header("Standings")
-    st.write(dash.standings())  
-    st.write(dash.previous_award()[0])
-    st.write(dash.previous_award()[1]) 
-    st.write(dash.next_award())
+    stand1, stand2 = st.columns([1,2])
+    stand1.markdown(f"""
+       ### :first_place_medal: {dash.standings().iloc[0].name} \n
+       #### :second_place_medal: {dash.standings().iloc[1].name}\n
+       #### :third_place_medal: {dash.standings().iloc[2].name}\n
+    """)
+    stand2.write(dash.standings())  
+    st.sidebar.header("*Previous Award*: " + dash.previous_award()[0])
+    st.sidebar.write("*Winner*: " + dash.previous_award()[2])
+    def highlighter(row):
+        if row == dash.previous_award()[2]:
+            return "background-color: darkgreen"
+
+        else:
+            return "background-color: maroon"
+
+    st.sidebar.write(pd.DataFrame(dash.previous_award()[1]).style.applymap(lambda x: highlighter(x)))
+    st.sidebar.header("*Next Award*: " + dash.next_award()[0])
+    st.sidebar.write(dash.next_award()[1])
     if st.button('Load Data'):
         st.rerun()
