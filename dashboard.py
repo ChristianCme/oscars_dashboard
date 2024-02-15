@@ -38,11 +38,11 @@ class DataHandler:
     def previous_award(self):
         #Display previous award's entries and winner, with red or greed if they won or not
         previous_award = self.order[self.curr_award_index - 1]
-        return self.entries[previous_award], self.winners[previous_award]
+        return previous_award, self.entries[previous_award], self.winners[previous_award]
         
 
     def next_award(self):        
-        return self.entries[self.order[self.curr_award_index]]
+        return self.order[self.curr_award_index], self.entries[self.order[self.curr_award_index]]
 
     def assign_value(self, row, winners):
         if row.loc['Entry'] == winners[row['Category']]:
