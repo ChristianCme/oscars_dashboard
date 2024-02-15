@@ -75,6 +75,13 @@ class DataHandler:
         return standings.merge(best_place_possible, on='Entrant')
 
 if __name__ == '__main__':
+    reduce_header_height_style = """
+    <style>
+        div.block-container {padding-top:1rem;}
+        div.st-emotion-cache-16txtl3 {padding-top:1rem;}
+    </style>
+    """
+    st.markdown(reduce_header_height_style, unsafe_allow_html=True)
     dash = DataHandler()
     #st.write(dash.winners)
     # st.write(dash.scores)
