@@ -26,7 +26,7 @@ class DataHandler:
         #Get list of awards in announcement order
         self.order = self.entries.loc['Order'].to_dict()
         self.order = list(dict(sorted(self.order.items(), key=lambda item: item[1])).keys())
-        self.entries = self.entries.drop(['WINNERS', 'Points', 'Order'])
+        self.entries = self.entries
 
 
     def find_award_pos(self):
