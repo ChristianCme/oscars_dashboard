@@ -22,9 +22,9 @@ class DataHandler:
         self.points = self.entries.loc['Points'].to_dict()
         #Convert strings to ints
         self.points = dict([a, int(x)] for a, x in self.points.items())
-
         #Get list of awards in announcement order
         self.order = self.entries.loc['Order'].to_dict()
+        self.order = dict((k,int(v)) for k,v in self.order.items())
         self.order = list(dict(sorted(self.order.items(), key=lambda item: item[1])).keys())
         self.entries = self.entries.drop(['WINNERS', 'Points', 'Order'])
 
@@ -72,7 +72,7 @@ class DataHandler:
         standings = self.calculate_scores(self.winners)
         best_place_possible = self.entries.apply(lambda x : self.highest_place_possible(x), axis=1)
         best_place_possible.name = 'Best Place Possible'
-        return standings.merge(best_place_possible, on='Entrant')
+        return standings.merge(best_place_possible, on='Entrant').drop(['Category', 'Entry'], axis=1)
 
 if __name__ == '__main__':
     reduce_header_height_style = """
