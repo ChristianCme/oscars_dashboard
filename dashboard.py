@@ -72,7 +72,7 @@ class DataHandler:
         standings = self.calculate_scores(self.winners)
         best_place_possible = self.entries.apply(lambda x : self.highest_place_possible(x), axis=1)
         best_place_possible.name = 'Best Place Possible'
-        return standings.merge(best_place_possible, on='Entrant').drop(['Category', 'Entry'], axis=1)
+        return standings.merge(best_place_possible, on='Entrant')
 
 if __name__ == '__main__':
     reduce_header_height_style = """
