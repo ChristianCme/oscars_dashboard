@@ -3,6 +3,8 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 import numpy as np
 
+#NOTE: Errors when there's no winners yet and when all winners are filled out
+
 class DataHandler:
 #Stateless application (i.e everything should be determined by the google sheet)
     
